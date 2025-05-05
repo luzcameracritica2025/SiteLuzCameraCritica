@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Detalhes do Filme - Chico Bento</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* Estiliza o menu flutuante */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 160px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegação -->
+  <nav>
+    <img src="./img/logo.png" alt="Luz, Câmera, Crítica" class="logo1">
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <div class="dropdown">
+      <a href="servicos.html">Serviços</a>
+      <div class="dropdown-content">
+        <a href="./serviços/consultoria.html">Consultoria</a>
+        <a href="./serviços/producao.html">Produção</a>
+        <a href="./serviços/distribuicao.html">Distribuição</a>
+      </div>
+    </div>
+    <a href="contato.html">Contato</a>
+    <div class="search-bar">
+      <input type="text" class="search-input" id="search-input" placeholder="Pesquisar..." />
+      <button class="search-button" onclick="searchFilme()">Buscar</button>
+    </div>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <div class="header">
+    <span class="pipoca">🍿</span>
+    <h1>Detalhes do Filme - Chico Bento</h1>
+  </div>
+
+  <!-- Detalhes do Filme -->
+  <div class="movie-detail">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Chico_Bento_animated_logo.jpg/1280px-Chico_Bento_animated_logo.jpg" alt="Chico Bento">
+    <div class="movie-info">
+      <h2>Chico Bento - O Filme</h2>
+      <p><strong>Descrição:</strong> Uma história de simplicidade e aventura no interior. Ideal para toda a família! <p>Chico Bento é um menino do interior que vive aventuras engraçadas com seus amigos e enfrenta desafios, tudo enquanto aprende importantes lições de vida sobre amizade, coragem e simplicidade. A animação traz uma história leve e divertida, com belos cenários do campo brasileiro.</p></p>
+      <p><strong>Ano:</strong> 2025</p>
+      <p><strong>Duração:</strong> 1h 30min</p>
+      <p><strong>Gênero:</strong> Animação, Aventura, Família</p>
+      <p><strong>Classificação:</strong> Livre</p>
+      <p><strong>Avaliação:</strong> <span class="rating">★★★★☆</span></p>
+      <p><strong>Diretor:</strong> José da Silva</p>
+      <p><strong>Elenco:</strong> Chico Bento, Maria, Zé Lelé</p>
+
+      <!-- Link para avaliação -->
+      <a href="avaliacao.html" class="button">Avaliar Filme</a>
+    </div>
+  </div>
+
+  <script>
+    function searchFilme() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const movieItems = document.querySelectorAll('.movie-item');
+
+      movieItems.forEach(item => {
+        const title = item.querySelector('h2').innerText.toLowerCase();
+        if (title.includes(query)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Permite enviar a pesquisa ao pressionar Enter
+    document.getElementById('search-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        searchFilme();
+      }
+    });
+  </script>
+
+</body>
+</html>

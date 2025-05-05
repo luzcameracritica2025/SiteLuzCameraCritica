@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Filme - Cidade de Deus</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* Estiliza o menu flutuante */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333; /* Fundo escuro */
+      min-width: 160px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: white; /* Letras brancas */
+    }
+
+    .dropdown-content a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Barra de navegação -->
+  <nav>
+    <img src="./img/logo.png" alt="Luz, Câmera, Crítica" class="logo1">
+    <a href="./index.html">Início</a>
+    <a href="./sobre.html">Sobre</a>
+    <div class="dropdown">
+      <a href="servicos.html">Serviços</a>
+      <div class="dropdown-content">
+        <a href="./serviços/consultoria.html">Consultoria</a>
+        <a href="./serviços/producao.html">Produção</a>
+        <a href="./serviços/distribuicao.html">Distribuição</a>
+      </div>
+    </div>
+    <a href="contato.html">Contato</a>
+    <div class="search-bar">
+      <select class="search-select" id="search-category">
+        <option value="filmes">Filmes</option>
+        <option value="series">Séries</option>
+        <option value="desenhos">Desenhos</option>
+        <option value="novelas">Novelas</option>
+      </select>
+      <input type="text" class="search-input" id="search-input" placeholder="Pesquisar..." />
+      <button class="search-button" onclick="searchFilme()">Buscar</button>
+    </div>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <div class="header">
+    <span class="pipoca">🍿</span>
+    <h1>Detalhes do Filme - Cidade de Deus</h1>
+  </div>
+
+  <!-- Detalhes do Filme -->
+  <div class="movie-detail">
+    <img src="./img/cidade-de-Deus.jpg" alt="Cidade de Deus">
+    <div class="movie-info">
+      <h2>Cidade de Deus</h2>
+      <p><strong>Descrição:</strong> Um dos filmes brasileiros mais impactantes, "Cidade de Deus" retrata a ascensão do crime organizado em uma comunidade do Rio de Janeiro nos anos 60 e 70.</p>
+      <p><strong>Ano:</strong> 2002</p>
+      <p><strong>Duração:</strong> 2h 10min</p>
+      <p><strong>Gênero:</strong> Drama, Crime</p>
+      <p><strong>Classificação:</strong> 16 anos</p>
+      <p><strong>Avaliação:</strong> <span class="rating">★★★★★</span></p>
+      <p><strong>Diretor:</strong> Fernando Meirelles, Kátia Lund</p>
+      <p><strong>Elenco:</strong> Alexandre Rodrigues, Leandro Firmino, Matheus Nachtergaele</p>
+      <p><strong>Sinopse Completa:</strong> Baseado no romance de Paulo Lins, "Cidade de Deus" mostra a trajetória de Buscapé, um jovem talentoso que tenta escapar da violência e criminalidade que dominam sua favela. Enquanto Buscapé busca um futuro diferente, a guerra entre traficantes toma conta da comunidade, gerando cenas eletrizantes e profundas reflexões sociais.</p>
+
+      <!-- Botão para avaliar o filme -->
+      <a href="avaliacao.html" class="button">Avaliar Filme</a>
+    </div>
+  </div>
+
+  <script>
+    function searchFilme() {
+      const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+      const selectedCategory = document.getElementById('search-category').value;
+
+      const dados = {
+        filmes: { "chico bento": "./filmes/cb.html", "cidade de deus": "./filmes/CDD.html", "o auto da compadecida": "./filmes/adc.html", "tropa de elite": "./filmes/tpe.html" },
+        series: { "3%": "./series/3porcento.html", "dom": "./series/dom.html" },
+        desenhos: { "turma da mônica": "./desenhos/turma.html", "bob esponja": "./desenhos/bob.html" },
+        novelas: { "avenida brasil": "./novelas/avenida.html", "pantanal": "./novelas/pantanal.html" }
+      };
+
+      if (!dados[selectedCategory]) {
+        alert("Categoria inválida!");
+        return;
+      }
+
+      let resultados = [];
+      for (let titulo in dados[selectedCategory]) {
+        if (titulo.includes(searchInput)) {
+          resultados.push(dados[selectedCategory][titulo]);
+        }
+      }
+
+      if (resultados.length === 1) {
+        window.location.href = resultados[0];
+      } else if (resultados.length > 1) {
+        alert("Múltiplos conteúdos encontrados! Adicione mais palavras-chave para refinar sua busca.");
+      } else {
+        alert("Conteúdo não encontrado!");
+      }
+    }
+
+    document.getElementById('search-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        searchFilme();
+      }
+    });
+  </script>
+
+</body>
+</html>
